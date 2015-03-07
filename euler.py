@@ -55,7 +55,123 @@ def prime_factors(n):
 def Problem3():
     print max(prime_factors(600851475143))
 
-"""Problem 4: Largest palindrome project
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
-Find the largest palindrome made from the product of two 3-digit numbers."""
+"""Problem 4: Largest palindrome project"""
+def checkPalindrome(n):
+  return str(n) == (str(n))[::-1]
+
+def maxPal():
+  a = 999
+  num = 0
+  while a > 99:
+    b = 999    
+    while b >= a:
+      prod = a * b
+      if prod > num and checkPalindrome(prod): 
+        num = prod
+      b = b-1
+    a = a-1
+  return num
+
+def Problem4():
+  print maxPal()
+
+
+"""Problem 5: Smallest Multiple"""
+
+"""first attempt"""
+def nec(x,l):
+  for item in l:
+    if item % x == 0:
+      return False
+  return True
+
+def twentyList():
+  list = range(1,20)
+  newList = [20]
+  for i in reversed(list):
+    if nec(i,newList):
+      newList.append(i)
+  return newList
+
+"""solved using prime factors"""
+def primeFactors(n):
+  dict = {2: 0, 3: 0, 5: 0, 7: 0, 11: 0, 13: 0, 17: 0, 19: 0}
+  primes = [2,3,5,7,11,13,17,19]
+  num = n
+  check = True
+  while(check):
+    for i in primes:
+      if num % i == 0:
+        num = num / i
+        dict[i] += 1
+        if num==1:
+          check = False
+  return dict
+
+def necFactors():
+  dict = primeFactors(20)
+  for n in range(2,20):
+    dict2 = primeFactors(n)
+    for key, value in dict2.iteritems():
+      if dict[key] < value:
+        dict[key] = value
+  return dict
+
+def Problem5():
+  n = 1
+  dict = necFactors()
+  for key, value in dict.iteritems():
+    if value != 0:
+      n = n * (key ** value)
+  print n
+
+"""Problem 6: Sum Square Difference"""
+def squareSum():
+  n = 0
+  for i in range(1,101):
+    n += i
+  return (n**2)
+
+def sumSquares():
+  n = 0
+  for i in range(1,101):
+    n += (i**2)
+  return n
+
+def Problem6():
+  print squareSum() - sumSquares()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
