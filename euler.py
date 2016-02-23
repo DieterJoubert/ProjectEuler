@@ -141,6 +141,44 @@ def sumSquares():
 def Problem6():
   print squareSum() - sumSquares()
 
+"""Problem 7: 10001st Prime"""
+def isPrime(n):
+  if n % 2 == 0: return False
+  check = 3
+  while check < n**0.5 + 1:
+    if n % check == 0: 
+      return False
+    check += 2
+  return True
+
+def nthPrime(n):
+  prime = 2
+  count = 1
+  iteration = 3
+  while count < n:
+    if isPrime(iteration):
+      prime = iteration
+      count += 1
+    iteration += 2
+  return prime
+
+def Problem7():
+  print nthPrime(10001)
+
+#TODO: Implement problem 7 using Sieve
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
